@@ -1,5 +1,5 @@
-GO_LDFLAGS = '-X "github.com/clintjedwards/test/main.version=$(VERSION)"'
-VERSION = v1.0.1
+SEMVER = v1.0.0
+GO_LDFLAGS = '-X "main.version=$(SEMVER)"'
 BUILD_PATH = /tmp/test
 
 ## build: run tests and compile full app in production mode
