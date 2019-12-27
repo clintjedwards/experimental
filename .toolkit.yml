@@ -1,2 +1,12 @@
-repoName: clintjedwards/test
-makefilePath: ~/Documents/test
+repository: clintjedwards/test
+commands:
+  build:
+    - go mod tidy
+    - echo {{.Version}}
+    - go build -ldflags '-X "main.version={{.VersionFull}}"' -o {{.Path}}
+    - date +%s
+    - uptime
+  deploy:
+    - uname -a
+    - /tmp/test_1.0.2
+    - sudo netstat -tuplen
