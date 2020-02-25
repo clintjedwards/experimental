@@ -4,11 +4,10 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"os"
 	"runtime"
-
-	"github.com/prometheus/common/log"
 )
 
 var version = "test"
@@ -55,7 +54,7 @@ func HelloServer(w http.ResponseWriter, r *http.Request) {
 		"Hostname": hostname,
 	})
 	if err != nil {
-		log.Error(err)
+		log.Println(err)
 	}
 
 	fmt.Fprintf(w, string(template))
