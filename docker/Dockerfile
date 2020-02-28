@@ -7,8 +7,7 @@ ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0
 
 RUN make build SEMVER=1.0.0 BUILD_PATH=/build/experimental build
 
-FROM alpine:latest
+FROM gcr.io/distroless/static
 WORKDIR /app
-RUN apk update && apk add ca-certificates
 COPY --from=build-environment /build/experimental /app/experimental
 ENTRYPOINT [ "./experimental" ]

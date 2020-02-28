@@ -25,6 +25,7 @@ var testpage = `
 
 func main() {
 	http.HandleFunc("/", HelloServer)
+	log.Println("started webserver")
 	http.ListenAndServe("0.0.0.0:8080", nil)
 }
 
