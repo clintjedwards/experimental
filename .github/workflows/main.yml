@@ -1,34 +1,32 @@
-name: Build Docker container
+name: Build Docker containers
 
 # Only build new container on new tags for master branch
 on:
   push:
-    branches:
-      - master
     tags:
-      - v*
+      - "*"
 
 jobs:
   main:
-    name: Build and push Docker container
+    name: Build and push Docker containers
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Build Docker container for amd64 arch
-        run: docker build --build-arg GOARCH=amd64 --build-arg SEMVER=1.0.0 -f docker/Dockerfile . -t clintjedwards/experimental:amd64-latest
+        run: docker build --build-arg GOARCH=amd64 --build-arg SEMVER=1.0.0 -f docker/Dockerfile . -t clintjedwards/experimental-amd64:latest
 
       - name: Build Docker container for arm64 arch
-        run: docker build --build-arg GOARCH=arm64 --build-arg SEMVER=1.0.0 -f docker/Dockerfile . -t clintjedwards/experimental:arm64-latest
+        run: docker build --build-arg GOARCH=arm64 --build-arg SEMVER=1.0.0 -f docker/Dockerfile . -t clintjedwards/experimental-arm64:latest
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u clintjedwards --password-stdin
 
       - name: Push image
         run: |
-          docker tag clintjedwards/experimental:amd64-latest docker.pkg.github.com/clintjedwards/experimental:amd64-latest
-          docker tag clintjedwards/experimental:arm64-latest docker.pkg.github.com/clintjedwards/experimental:arm64-latest
+          docker tag clintjedwards/experimental-amd64:latest docker.pkg.github.com/clintjedwards/experimental/experimental-amd64:latest
+          docker tag clintjedwards/experimental-arm64:latest docker.pkg.github.com/clintjedwards/experimental/experimental-arm64:latest
 
-          docker push docker.pkg.github.com/clintjedwards/experimental:amd64-latest
-          docker push docker.pkg.github.com/clintjedwards/experimental:arm64-latest
+          docker push docker.pkg.github.com/clintjedwards/experimental/experimental-amd64:latest
+          docker push docker.pkg.github.com/clintjedwards/experimental/experimental-arm64:latest
