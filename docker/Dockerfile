@@ -1,11 +1,14 @@
 FROM golang:1.13 AS build-environment
 
+ARG GOARCH
+ARG SEMVER
+
 ADD . /files
 WORKDIR /files
 
-ENV GOOS=linux GOARCH=amd64 CGO_ENABLED=0
+ENV GOOS=linux GOARCH=${GOARCH} CGO_ENABLED=0
 
-RUN make build SEMVER=1.0.0 BUILD_PATH=/build/experimental build
+RUN make build SEMVER=${SEMVER}} BUILD_PATH=/build/experimental build
 
 FROM gcr.io/distroless/static
 WORKDIR /app
