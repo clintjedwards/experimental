@@ -15,18 +15,18 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build Docker container for amd64 arch
-        run: docker build --build-arg GOARCH=amd64 --build-arg SEMVER=1.0.0 -f docker/Dockerfile . -t clintjedwards/experimental-amd64:latest
+        run: docker build --build-arg GOARCH=amd64 --build-arg SEMVER=$GITHUB_REF -f docker/Dockerfile . -t clintjedwards/experimental-amd64:latest
 
       - name: Build Docker container for arm64 arch
-        run: docker build --build-arg GOARCH=arm64 --build-arg SEMVER=1.0.0 -f docker/Dockerfile . -t clintjedwards/experimental-arm64:latest
+        run: docker build --build-arg GOARCH=arm64 --build-arg SEMVER=$GITHUB_REF -f docker/Dockerfile . -t clintjedwards/experimental-arm64:latest
 
       - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u clintjedwards --password-stdin
+        run: echo "${{ secrets.DOCKER_KEY}}" | docker login --username=cje3295 --password-stdin
 
       - name: Push image
         run: |
-          docker tag clintjedwards/experimental-amd64:latest cje3295/experimental/amd64-release-$GITHUB_REF
-          docker tag clintjedwards/experimental-arm64:latest cje3295/experimental/arm64-release-$GITHUB_REF
+          docker tag clintjedwards/experimental:amd64-release-$GITHUB_REF cje3295/experimental:amd64-release-$GITHUB_REF
+          docker tag clintjedwards/experimental:arm64-release-$GITHUB_REF cje3295/experimental:arm64-release-$GITHUB_REF
 
-          docker push cje3295/experimental/experimental/amd64-release-$GITHUB_REF
-          docker push cje3295/experimental/experimental/arm64-release-$GITHUB_REF
+          docker push cje3295/experimental:amd64-release-$GITHUB_REF
+          docker push cje3295/experimental:arm64-release-$GITHUB_REF
