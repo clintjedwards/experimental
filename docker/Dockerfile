@@ -8,7 +8,7 @@ WORKDIR /files
 
 ENV GOOS=linux GOARCH=${GOARCH} CGO_ENABLED=0
 
-RUN make build SEMVER=${SEMVER}} BUILD_PATH=/build/experimental build
+RUN make build SEMVER=${SEMVER} BUILD_PATH=/build/experimental build
 
 FROM gcr.io/distroless/static
 WORKDIR /app
