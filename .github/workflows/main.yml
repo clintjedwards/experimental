@@ -15,10 +15,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build Docker container for amd64 arch
-        run: docker build --build-arg GOARCH=amd64 --build-arg SEMVER=$GITHUB_REF -f docker/Dockerfile . -t clintjedwards/experimental-amd64:latest
+        run: docker build --build-arg GOARCH=amd64 --build-arg SEMVER=$GITHUB_REF -f docker/Dockerfile . -t clintjedwards/experimental:amd64-release-$GITHUB_REF
 
       - name: Build Docker container for arm64 arch
-        run: docker build --build-arg GOARCH=arm64 --build-arg SEMVER=$GITHUB_REF -f docker/Dockerfile . -t clintjedwards/experimental-arm64:latest
+        run: docker build --build-arg GOARCH=arm64 --build-arg SEMVER=$GITHUB_REF -f docker/Dockerfile . -t clintjedwards/experimental:amd64-release-$GITHUB_REF
 
       - name: Log into registry
         run: echo "${{ secrets.DOCKER_KEY}}" | docker login --username=cje3295 --password-stdin
