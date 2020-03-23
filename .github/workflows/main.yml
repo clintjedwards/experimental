@@ -20,7 +20,7 @@ jobs:
         run: docker build --build-arg GOARCH=amd64 --build-arg SEMVER=${{ env.RELEASE_VERSION }} -f docker/Dockerfile . -t clintjedwards/experimental:amd64-release-${{ env.RELEASE_VERSION }}
 
       - name: Build Docker container for arm64 arch
-        run: docker build --build-arg GOARCH=arm64 --build-arg SEMVER=${{ env.RELEASE_VERSION }} -f docker/Dockerfile . -t clintjedwards/experimental:amd64-release-${{ env.RELEASE_VERSION }}
+        run: docker build --build-arg GOARCH=arm64 --build-arg SEMVER=${{ env.RELEASE_VERSION }} -f docker/Dockerfile . -t clintjedwards/experimental:arm64-release-${{ env.RELEASE_VERSION }}
 
       - name: Log into registry
         run: echo "${{ secrets.DOCKER_KEY}}" | docker login --username=cje3295 --password-stdin
