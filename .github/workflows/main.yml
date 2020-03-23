@@ -25,8 +25,8 @@ jobs:
 
       - name: Push image
         run: |
-          docker tag clintjedwards/experimental-amd64:latest docker.pkg.github.com/clintjedwards/experimental/experimental-amd64:latest
-          docker tag clintjedwards/experimental-arm64:latest docker.pkg.github.com/clintjedwards/experimental/experimental-arm64:latest
+          docker tag clintjedwards/experimental-amd64:latest cje3295/experimental/amd64-release-$GITHUB_REF
+          docker tag clintjedwards/experimental-arm64:latest cje3295/experimental/arm64-release-$GITHUB_REF
 
-          docker push docker.pkg.github.com/clintjedwards/experimental/experimental-amd64:latest
-          docker push docker.pkg.github.com/clintjedwards/experimental/experimental-arm64:latest
+          docker push cje3295/experimental/experimental/amd64-release-$GITHUB_REF
+          docker push cje3295/experimental/experimental/arm64-release-$GITHUB_REF
