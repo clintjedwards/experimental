@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: experimental-ingress
+spec:
+  rules:
+    - host: experimental.clintjedwards.home
+      http:
+        paths:
+          - backend:
+              serviceName: experimental-service
+              servicePort: 8080
