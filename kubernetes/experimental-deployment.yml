@@ -18,6 +18,14 @@ spec:
           resources:
             limits:
               memory: "128Mi"
-              cpu: "500m"
+              cpu: "100m"
           ports:
             - containerPort: 8080
+          env:
+            - name: TEST_ENV
+              value: "A test environment variable. Hello!"
+            # - name: SECRET_USERNAME
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: backend-user
+            #       key: backend-username

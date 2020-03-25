@@ -18,7 +18,8 @@ var testpage = `
     <h1>Hello World!</h1>
     <h2>Version: {{.Version}}</h2>
     <h2>OS: {{.OS}}</h2>
-    <h2>Hostname: {{.Hostname}}</h2>
+	<h2>Hostname: {{.Hostname}}</h2>
+	<h2>Test Environment Variable: {{.TestEnv}}</h2>
   </body>
 </html>
 `
@@ -49,10 +50,13 @@ func HelloServer(w http.ResponseWriter, r *http.Request) {
 
 	hostname, _ := os.Hostname()
 
+	testEnv := os.Getenv("TEST_ENV")
+
 	template, err := parseTemplate(testpage, map[string]string{
 		"Version":  version,
 		"OS":       fmt.Sprintf("%s/%s", runtime.GOOS, runtime.GOARCH),
 		"Hostname": hostname,
+		"TestEnv":  testEnv,
 	})
 	if err != nil {
 		log.Println(err)
