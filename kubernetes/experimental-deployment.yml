@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: experimental
-          image: cje3295/experimental:arm64-release-1.0.13
+          image: cje3295/experimental:arm64-release-1.0.14
           resources:
             limits:
               memory: "128Mi"
