@@ -10,3 +10,11 @@ spec:
           - backend:
               serviceName: experimental-service
               servicePort: 8080
+      # This host entry allows us to just type in experimental/
+      # once DNS search domains are set up for clients
+    - host: experimental
+      http:
+        paths:
+          - backend:
+              serviceName: experimental-service
+              servicePort: 8080
