@@ -1,6 +1,6 @@
 name = "experimental"
 description = "a simple test pipeline"
-default_task_id = "1"
+default_task = "1"
 tasks {
     task "1" {
         description = "test description"
