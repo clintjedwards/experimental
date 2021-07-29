@@ -6,3 +6,7 @@ BUILD_PATH = /tmp/test
 build:
 	go mod tidy
 	go build -ldflags $(GO_LDFLAGS) -o $(BUILD_PATH)
+
+build_logs:
+	go mod tidy
+	go build -ldflags $(GO_LDFLAGS) -o $(BUILD_PATH) logs.go
