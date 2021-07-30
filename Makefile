@@ -10,3 +10,7 @@ build:
 build_logs:
 	go mod tidy
 	go build -ldflags $(GO_LDFLAGS) -o $(BUILD_PATH) logs.go
+
+build_fail:
+	go mod tidy
+	go build -ldflags $(GO_LDFLAGS) -o $(BUILD_PATH) fail.go

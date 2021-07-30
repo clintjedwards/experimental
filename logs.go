@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"strings"
 	"time"
 )
@@ -28,10 +29,13 @@ their webs, they wash me, dry me, dress me, like nurses.
 `
 
 func main() {
+	header := os.Getenv("LOGS_HEADER")
+
+	log.Println(header)
 	log.Println(version)
 	splitCorpus := strings.Split(corpus, "\n")
 	for _, line := range splitCorpus {
 		log.Println(line)
-		time.Sleep(time.Second * 5)
+		time.Sleep(time.Second * 2)
 	}
 }
