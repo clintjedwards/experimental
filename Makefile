@@ -14,3 +14,7 @@ build_logs:
 build_fail:
 	go mod tidy
 	go build -ldflags $(GO_LDFLAGS) -o $(BUILD_PATH) fail.go
+
+build_wait:
+	go mod tidy
+	go build -ldflags $(GO_LDFLAGS) -o $(BUILD_PATH) wait.go
