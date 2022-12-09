@@ -20,3 +20,4 @@ build_wait:
 	go build -ldflags $(GO_LDFLAGS) -o $(BUILD_PATH) wait.go
 
 # Test change 1
+# Test change 2
