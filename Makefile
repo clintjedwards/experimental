@@ -18,3 +18,5 @@ build_fail:
 build_wait:
 	go mod tidy
 	go build -ldflags $(GO_LDFLAGS) -o $(BUILD_PATH) wait.go
+
+# Test change 1
