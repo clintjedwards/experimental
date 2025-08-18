@@ -1,0 +1,15 @@
+FROM golang:1.16 AS build-environment
+
+LABEL org.opencontainers.image.source=https://github.com/clintjedwards/experimental
+
+ADD . /files
+WORKDIR /files
+
+ENV GOOS=linux CGO_ENABLED=0
+
+RUN make build_logs BUILD_PATH=/build/experimental
+
+FROM gcr.io/distroless/static
+WORKDIR /app
+COPY --from=build-environment /build/experimental /app/experimental
+ENTRYPOINT [ "./experimental" ]
