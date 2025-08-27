@@ -1,10 +1,19 @@
 name: Docker
 
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      set_latest_tag:
+        description: 'Set to true to tag the image with `latest`'
+        required: true
+        default: false
+        type: boolean
+
 
 env:
   REGISTRY: docker.io
   IMAGE_NAME: cje3295/experimental
+  SET_LATEST: ${{ github.event.inputs.set_latest_tag }}
 
 jobs:
   build:
@@ -38,7 +47,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           flavor: |
-            latest=true
+            latest=${{ env.SET_LATEST }}
           tags: |
             type=ref,event=branch,pattern={{branch}}
             type=semver,pattern={{version}},value=${{ env.SOURCE_VERSION }}
@@ -93,7 +102,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           flavor: |
-            latest=true
+            latest=${{ env.SET_LATEST }}
           tags: |
             type=ref,event=branch,pattern={{branch}}
             type=semver,pattern={{version}},value=${{ env.SOURCE_VERSION }}
